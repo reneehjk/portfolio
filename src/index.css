@@ -22,3 +22,9 @@
   .border-half { border-width: 0.5px; }
   .tracking-eyebrow { letter-spacing: 0.13em; }
 }
+
+@media (hover: hover) and (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}

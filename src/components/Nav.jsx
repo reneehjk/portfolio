@@ -41,8 +41,9 @@ export default function Nav() {
   }, [])
 
   return (
+    <>
     <nav
-      className={`sticky top-0 z-30 flex items-center justify-between px-5 md:px-10 py-6 border-b border-half border-border-default transition-colors duration-300 ${
+      className={`sticky top-0 z-50 flex items-center justify-between px-5 md:px-10 py-6 border-b border-half border-border-default transition-colors duration-300 ${
         scrolled ? 'bg-bg-primary/50 backdrop-blur-md' : 'bg-bg-primary'
       }`}
     >
@@ -97,6 +98,7 @@ export default function Nav() {
           <MenuIcon className="w-4 h-[10.5px]" />
         )}
       </button>
+    </nav>
 
       {/* mobile full-page menu */}
       <div
@@ -140,6 +142,6 @@ export default function Nav() {
           </a>
         </div>
       </div>
-    </nav>
+    </>
   )
 }
