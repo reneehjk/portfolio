@@ -25,7 +25,7 @@ export default function AboutSection() {
 
         {/* bio */}
         <p className="text-body text-text-secondary lowercase leading-relaxed">
-          bcomh computing graduate at queen's university. co-founded the queen's ux club. currently designing & building at{' '}
+          bcomph graduate at queen's university. co-founded the queen's ux club. currently designing & building at{' '}
           <a
             href="https://periodaisle.com/"
             target="_blank"
