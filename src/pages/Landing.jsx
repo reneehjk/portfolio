@@ -19,8 +19,8 @@ export default function Landing() {
 
   return (
     <div className="min-h-screen bg-bg-primary">
+      <Nav />
       <div className="bg-[linear-gradient(225deg,#e8f1f8_0%,#fafaf8_100%)]">
-        <Nav />
         <Hero />
       </div>
 

@@ -3,6 +3,7 @@ import Landing from './pages/Landing'
 import About from './pages/About'
 import CaseStudy from './pages/CaseStudy'
 import ScrollToTop from './components/ScrollToTop'
+import { Analytics } from '@vercel/analytics/react'
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/case-study/:slug" element={<CaseStudy />} />
       </Routes>
+      <Analytics />
     </BrowserRouter>
   )
 }

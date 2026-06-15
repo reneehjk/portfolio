@@ -12,7 +12,7 @@ export default function AboutSection() {
   return (
     <section className="flex flex-col md:flex-row gap-10 px-5 md:px-10 py-14 border-t border-half border-border-default">
       {/* left — bio */}
-      <div className="flex flex-col gap-8 w-full md:flex-[398] pb-10 md:pb-0 border-b-half md:border-b-0 md:border-r-half border-border-default md:pr-10 md:sticky md:top-14 md:self-start">
+      <div className="flex flex-col gap-8 w-full md:flex-[398] pb-10 md:pb-0 border-b-half md:border-b-0 md:border-r-half border-border-default md:pr-10 md:sticky md:top-20 md:self-start">
         <span className="text-label tracking-eyebrow uppercase text-text-secondary">about</span>
 
         {/* photo + headline */}

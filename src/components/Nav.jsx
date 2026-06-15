@@ -1,11 +1,15 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { MenuIcon, CloseIcon, ArrowUpRightIcon } from './icons'
 import logo from '../assets/logo.svg'
 
 export default function Nav() {
+  const location = useLocation()
+  const isHome = location.pathname === '/'
+  const isAbout = location.pathname === '/about'
   const [time, setTime] = useState('')
   const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
     const tick = () => {
@@ -29,8 +33,19 @@ export default function Nav() {
     }
   }, [menuOpen])
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8)
+    onScroll()
+    window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
-    <nav className="relative flex items-center justify-between px-5 md:px-10 py-6 border-b border-half border-border-default">
+    <nav
+      className={`sticky top-0 z-30 flex items-center justify-between px-5 md:px-10 py-6 border-b border-half border-border-default transition-colors duration-300 ${
+        scrolled ? 'bg-bg-primary/50 backdrop-blur-md' : 'bg-bg-primary'
+      }`}
+    >
       {/* left — name */}
       <Link to="/" className="flex items-center gap-2">
         <img src={logo} alt="" className="w-3 h-3" />
@@ -45,20 +60,24 @@ export default function Nav() {
       {/* right — links (hidden on mobile) */}
       <div className="hidden sm:flex items-center gap-10">
         <Link
-          to="/#work"
-          className="text-nav text-text-secondary hover:text-accent-default transition-colors duration-200"
+          to="/"
+          className={`text-nav transition-colors duration-200 ${
+            isHome ? 'text-accent-dark' : 'text-text-secondary hover:text-accent-default'
+          }`}
         >
-          work
+          home
         </Link>
         <Link
           to="/about"
-          className="text-nav text-text-secondary hover:text-accent-default transition-colors duration-200"
+          className={`text-nav transition-colors duration-200 ${
+            isAbout ? 'text-accent-dark' : 'text-text-secondary hover:text-accent-default'
+          }`}
         >
           about
         </Link>
         <a
           href="mailto:reneehjkim11@gmail.com"
-          className="inline-flex items-center gap-1 text-nav text-accent-default hover:text-accent-dark transition-colors duration-200"
+          className="inline-flex items-center gap-1 text-nav text-text-secondary hover:text-accent-default transition-colors duration-200"
         >
           contact
           <ArrowUpRightIcon className="w-2.5 h-2.5" />
@@ -97,14 +116,18 @@ export default function Nav() {
           <Link
             to="/#work"
             onClick={() => setMenuOpen(false)}
-            className="text-heading text-text-primary lowercase hover:text-accent-default transition-colors duration-200"
+            className={`text-heading lowercase transition-colors duration-200 ${
+              isHome ? 'text-accent-dark' : 'text-text-primary hover:text-accent-default'
+            }`}
           >
             work
           </Link>
           <Link
             to="/about"
             onClick={() => setMenuOpen(false)}
-            className="text-heading text-text-primary lowercase hover:text-accent-default transition-colors duration-200"
+            className={`text-heading lowercase transition-colors duration-200 ${
+              isAbout ? 'text-accent-dark' : 'text-text-primary hover:text-accent-default'
+            }`}
           >
             about
           </Link>
