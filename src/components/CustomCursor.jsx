@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 export default function CustomCursor() {
-  const dotRef = useRef(null)
+  const wrapperRef = useRef(null)
   const target = useRef({ x: -100, y: -100 })
   const pos = useRef({ x: -100, y: -100 })
   const [hovering, setHovering] = useState(false)
@@ -23,10 +23,11 @@ export default function CustomCursor() {
 
     let raf
     const tick = () => {
-      pos.current.x += (target.current.x - pos.current.x) * 0.2
-      pos.current.y += (target.current.y - pos.current.y) * 0.2
-      if (dotRef.current) {
-        dotRef.current.style.transform = `translate3d(${pos.current.x}px, ${pos.current.y}px, 0) translate(-50%, -50%)`
+      pos.current.x += (target.current.x - pos.current.x) * 0.5
+      pos.current.y += (target.current.y - pos.current.y) * 0.5
+      if (wrapperRef.current) {
+        wrapperRef.current.style.left = `${pos.current.x}px`
+        wrapperRef.current.style.top = `${pos.current.y}px`
       }
       raf = requestAnimationFrame(tick)
     }
@@ -42,10 +43,15 @@ export default function CustomCursor() {
 
   return (
     <div
-      ref={dotRef}
-      className={`hidden md:block fixed top-0 left-0 z-[100] pointer-events-none rounded-full bg-accent-default transition-[width,height,opacity] duration-200 ease-out ${
-        hovering ? 'w-8 h-8 opacity-50' : 'w-4 h-4 opacity-100'
-      }`}
-    />
+      ref={wrapperRef}
+      className="hidden md:block fixed z-[100] pointer-events-none -translate-x-1/2 -translate-y-1/2"
+      style={{ left: '-100px', top: '-100px' }}
+    >
+      <div
+        className={`rounded-full bg-accent-default transition-[width,height,opacity] duration-150 ease-out ${
+          hovering ? 'w-8 h-8 opacity-40' : 'w-3 h-3 opacity-100'
+        }`}
+      />
+    </div>
   )
 }

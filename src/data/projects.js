@@ -3,7 +3,7 @@ export const projects = [
     id: 'aisle',
     num: '01',
     name: 'aisle',
-    type: 'ux / ui · shopify',
+    type: 'web design/development · e-commerce',
     description:
       'rebranding and new product launch. redesigned the user flow to build trust, then built the whole thing in shopify.',
     thumbBg: '#e8e2d9',
@@ -24,7 +24,7 @@ export const projects = [
     id: 'plotd',
     num: '03',
     name: 'plotd',
-    type: 'branding · mobile',
+    type: 'branding · ux / ui',
     description:
       'collaborative project, owned the full design direction. led branding and all mobile screen design for a new app built from scratch.',
     thumbBg: '#dde8db',

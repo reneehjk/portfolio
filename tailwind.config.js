@@ -36,6 +36,10 @@ export default {
         'label': ['12px', { lineHeight: '1.4', fontWeight: '300', letterSpacing: '0.13em' }],
       },
       keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
         slideUp: {
           '0%': { transform: 'translateY(110%)' },
           '100%': { transform: 'translateY(0)' },
@@ -50,6 +54,7 @@ export default {
         },
       },
       animation: {
+        marquee: 'marquee 22s linear infinite',
         slideUp: 'slideUp 0.9s cubic-bezier(0.16,1,0.3,1) forwards',
         fadeIn: 'fadeIn 0.6s ease forwards',
         fadeUp: 'fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) forwards',

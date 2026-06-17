@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
+import SEO from '../components/SEO'
 import { projects } from '../data/projects'
 
 export default function CaseStudy() {
@@ -22,6 +23,11 @@ export default function CaseStudy() {
 
   return (
     <div className="min-h-screen bg-bg-primary">
+      <SEO
+        title={`${project.name} — Renee Kim`}
+        description={project.description}
+        path={`/case-study/${project.slug}`}
+      />
       <Nav />
 
       {/* hero */}

@@ -4,6 +4,7 @@ import Hero from '../components/Hero'
 import ProjectRow from '../components/ProjectRow'
 import AboutSection from '../components/AboutSection'
 import Footer from '../components/Footer'
+import SEO from '../components/SEO'
 import { projects } from '../data/projects'
 
 export default function Landing() {
@@ -19,6 +20,11 @@ export default function Landing() {
 
   return (
     <div className="min-h-screen bg-bg-primary">
+      <SEO
+        title="Renee Kim — Designer & Developer"
+        description="Renee Kim is a designer and developer based in Canada who designs with intention and builds with precision. Selected work in UX/UI, branding, and product design."
+        path="/"
+      />
       <Nav />
       <div className="bg-[linear-gradient(225deg,#e8f1f8_0%,#fafaf8_100%)]">
         <Hero />
