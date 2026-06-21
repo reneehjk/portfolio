@@ -4,6 +4,8 @@ import { PlusIcon, ArrowUpRightIcon } from './icons'
 import placeholderVideo from '../assets/placeholder.mp4'
 import aisleHero from '../assets/aisle/hero.mp4'
 import plotdHero from '../assets/plotd/hero.mp4'
+import pochiHero from '../assets/pochi/hero.gif'
+import aisleHeroCover from '../assets/aisle/heroCover.png'
 
 export default function ProjectRow({ project, isMobile, onSelect, isSelected }) {
   const [hovered, setHovered] = useState(false)
@@ -63,7 +65,14 @@ export default function ProjectRow({ project, isMobile, onSelect, isSelected }) 
           }`}
         >
           {/* thumbnail */}
-          {project.id === 'plotd' ? (
+          {project.id === 'pochi' ? (
+            <div
+              className="w-full aspect-[515/240] md:aspect-auto md:h-60 rounded-lg overflow-hidden"
+              style={{ backgroundColor: '#FAF8F6' }}
+            >
+              <img src={pochiHero} alt="pochi" className="w-full h-full object-contain" />
+            </div>
+          ) : project.id === 'plotd' ? (
             <div
               className="w-full aspect-[515/240] md:aspect-auto md:h-60 rounded-lg overflow-hidden flex items-center justify-center"
               style={{ background: 'linear-gradient(213deg, rgba(255,98,198,1) 0%, rgba(251,213,101,1) 100%)' }}
@@ -80,7 +89,7 @@ export default function ProjectRow({ project, isMobile, onSelect, isSelected }) 
             </div>
           ) : (
             <div
-              className="w-full aspect-[515/240] md:aspect-auto md:h-60 rounded-lg overflow-hidden"
+              className="w-full aspect-[515/240] md:aspect-auto md:h-60 rounded-lg overflow-hidden relative"
               style={{ backgroundColor: project.thumbBg }}
             >
               <video
@@ -91,6 +100,13 @@ export default function ProjectRow({ project, isMobile, onSelect, isSelected }) 
                 playsInline
                 className="w-full h-full object-cover"
               />
+              {project.id === 'aisle' && (
+                <img
+                  src={aisleHeroCover}
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-contain"
+                />
+              )}
             </div>
           )}
 
