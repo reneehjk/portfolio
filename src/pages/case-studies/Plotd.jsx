@@ -1,9 +1,17 @@
+import { useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import SEO from '../../components/SEO'
+import plotdHero from '../../assets/plotd/hero.mp4'
 
 export default function Plotd() {
+  const videoRef = useRef(null)
+
+  useEffect(() => {
+    if (videoRef.current) videoRef.current.playbackRate = 2
+  }, [])
+
   return (
     <div className="min-h-screen bg-bg-primary">
       <SEO
@@ -23,7 +31,7 @@ export default function Plotd() {
         </Link>
         <div className="flex justify-between items-start mb-8">
           <span className="text-label tracking-eyebrow uppercase text-text-muted font-light">branding · ux / ui</span>
-          <span className="text-label text-text-faint font-light">2025</span>
+          <span className="text-label text-text-faint font-light">2025 - 2026</span>
         </div>
         <h1 className="font-normal text-text-primary mb-6" style={{ fontSize: '52px', lineHeight: '1.06' }}>
           plotd.
@@ -36,15 +44,27 @@ export default function Plotd() {
       {/* content */}
       <section className="px-9 py-20">
         <div
-          className="w-full h-80 rounded-lg flex items-center justify-center text-label text-text-faint font-light mb-12"
-          style={{ backgroundColor: '#dde8db' }}
+          className="w-full h-[480px] rounded-lg overflow-hidden flex items-center justify-center mb-12"
+          style={{ background: 'linear-gradient(213deg, rgba(255,98,198,1) 0%, rgba(251,213,101,1) 100%)' }}
         >
-          project images coming soon
+          <video
+            ref={videoRef}
+            src={plotdHero}
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{ aspectRatio: '0.48', height: '88%', width: 'auto' }}
+            className="object-cover rounded-2xl"
+          />
         </div>
         <div className="max-w-2xl">
           <span className="text-label tracking-eyebrow uppercase text-text-muted font-light block mb-6">CASE STUDY</span>
+          <p className="text-body text-text-secondary font-light leading-relaxed mb-6">
+            a collaborative mobile app, designed from the ground up. came in early, before there was a product, and owned the design direction through to a full UI system.
+          </p>
           <p className="text-body text-text-secondary font-light leading-relaxed">
-            case study content coming soon.
+            a lot of the work was translation, turning loose ideas into something coherent and buildable.
           </p>
         </div>
       </section>

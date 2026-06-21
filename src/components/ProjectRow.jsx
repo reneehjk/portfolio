@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { PlusIcon, ArrowUpRightIcon } from './icons'
 import placeholderVideo from '../assets/placeholder.mp4'
 import aisleHero from '../assets/aisle/hero.mp4'
+import plotdHero from '../assets/plotd/hero.mp4'
 
 export default function ProjectRow({ project, isMobile, onSelect, isSelected }) {
   const [hovered, setHovered] = useState(false)
@@ -21,6 +22,7 @@ export default function ProjectRow({ project, isMobile, onSelect, isSelected }) 
     if (!video) return
     if (isOpen) {
       video.currentTime = 0
+      video.playbackRate = project.id === 'plotd' ? 2 : 1
       video.play()
     } else {
       video.pause()
@@ -61,19 +63,36 @@ export default function ProjectRow({ project, isMobile, onSelect, isSelected }) 
           }`}
         >
           {/* thumbnail */}
-          <div
-            className="w-full aspect-[515/240] md:aspect-auto md:h-60 rounded-lg overflow-hidden"
-            style={{ backgroundColor: project.thumbBg }}
-          >
-            <video
-              ref={videoRef}
-              src={project.id === 'aisle' ? aisleHero : placeholderVideo}
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover"
-            />
-          </div>
+          {project.id === 'plotd' ? (
+            <div
+              className="w-full aspect-[515/240] md:aspect-auto md:h-60 rounded-lg overflow-hidden flex items-center justify-center"
+              style={{ background: 'linear-gradient(213deg, rgba(255,98,198,1) 0%, rgba(251,213,101,1) 100%)' }}
+            >
+              <video
+                ref={videoRef}
+                src={plotdHero}
+                loop
+                muted
+                playsInline
+                style={{ aspectRatio: '0.48', height: '87%', width: 'auto' }}
+                className="object-cover rounded-2xl"
+              />
+            </div>
+          ) : (
+            <div
+              className="w-full aspect-[515/240] md:aspect-auto md:h-60 rounded-lg overflow-hidden"
+              style={{ backgroundColor: project.thumbBg }}
+            >
+              <video
+                ref={videoRef}
+                src={project.id === 'aisle' ? aisleHero : placeholderVideo}
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover"
+              />
+            </div>
+          )}
 
           {/* description + CTA */}
           <div className="flex flex-col justify-between gap-6 md:py-2">
