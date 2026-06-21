@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -5,6 +6,8 @@ import SEO from '../../components/SEO'
 import aisleHero from '../../assets/aisle/hero.mp4'
 
 export default function Aisle() {
+  const [isLoaded, setIsLoaded] = useState(false)
+
   return (
     <div className="min-h-screen bg-bg-primary">
       <SEO
@@ -37,7 +40,7 @@ export default function Aisle() {
       {/* content */}
       <section className="px-9 py-20">
         <div
-          className="w-full h-[480px] rounded-lg overflow-hidden mb-12"
+          className="w-full h-[480px] rounded-lg overflow-hidden mb-12 relative"
           style={{ backgroundColor: '#e8e2d9' }}
         >
           <video
@@ -47,7 +50,9 @@ export default function Aisle() {
             muted
             playsInline
             className="w-full h-full object-cover"
+            onCanPlay={() => setIsLoaded(true)}
           />
+          {!isLoaded && <div className="absolute inset-0 animate-pulse" style={{ backgroundColor: '#e8e2d9' }} />}
         </div>
         <div className="max-w-2xl">
           <span className="text-label tracking-eyebrow uppercase text-text-muted font-light block mb-6">CASE STUDY</span>

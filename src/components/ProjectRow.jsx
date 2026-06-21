@@ -9,6 +9,7 @@ import aisleHeroCover from '../assets/aisle/heroCover.png'
 
 export default function ProjectRow({ project, isMobile, onSelect, isSelected }) {
   const [hovered, setHovered] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false)
   const navigate = useNavigate()
   const videoRef = useRef(null)
   const isOpen = isMobile ? isSelected : hovered
@@ -67,14 +68,20 @@ export default function ProjectRow({ project, isMobile, onSelect, isSelected }) 
           {/* thumbnail */}
           {project.id === 'pochi' ? (
             <div
-              className="w-full aspect-[515/240] md:aspect-auto md:h-60 rounded-lg overflow-hidden"
+              className="w-full aspect-[515/240] md:aspect-auto md:h-60 rounded-lg overflow-hidden relative"
               style={{ backgroundColor: '#FAF8F6' }}
             >
-              <img src={pochiHero} alt="pochi" className="w-full h-full object-contain" />
+              <img
+                src={pochiHero}
+                alt="pochi"
+                className="w-full h-full object-contain"
+                onLoad={() => setIsLoaded(true)}
+              />
+              {!isLoaded && <div className="absolute inset-0 animate-pulse" style={{ backgroundColor: '#FAF8F6' }} />}
             </div>
           ) : project.id === 'plotd' ? (
             <div
-              className="w-full aspect-[515/240] md:aspect-auto md:h-60 rounded-lg overflow-hidden flex items-center justify-center"
+              className="w-full aspect-[515/240] md:aspect-auto md:h-60 rounded-lg overflow-hidden flex items-center justify-center relative"
               style={{ background: 'linear-gradient(213deg, rgba(255,98,198,1) 0%, rgba(251,213,101,1) 100%)' }}
             >
               <video
@@ -85,7 +92,9 @@ export default function ProjectRow({ project, isMobile, onSelect, isSelected }) 
                 playsInline
                 style={{ aspectRatio: '0.48', height: '87%', width: 'auto' }}
                 className="object-cover rounded-2xl"
+                onCanPlay={() => setIsLoaded(true)}
               />
+              {!isLoaded && <div className="absolute inset-0" style={{ background: 'linear-gradient(213deg, rgba(255,98,198,1) 0%, rgba(251,213,101,1) 100%)' }} />}
             </div>
           ) : (
             <div
@@ -99,6 +108,7 @@ export default function ProjectRow({ project, isMobile, onSelect, isSelected }) 
                 muted
                 playsInline
                 className="w-full h-full object-cover"
+                onCanPlay={() => setIsLoaded(true)}
               />
               {project.id === 'aisle' && (
                 <img
@@ -107,6 +117,7 @@ export default function ProjectRow({ project, isMobile, onSelect, isSelected }) 
                   className="absolute inset-0 w-full h-full object-contain"
                 />
               )}
+              {!isLoaded && <div className="absolute inset-0 animate-pulse" style={{ backgroundColor: project.thumbBg }} />}
             </div>
           )}
 

@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -7,6 +7,7 @@ import plotdHero from '../../assets/plotd/hero.mp4'
 
 export default function Plotd() {
   const videoRef = useRef(null)
+  const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
     if (videoRef.current) videoRef.current.playbackRate = 2
@@ -44,7 +45,7 @@ export default function Plotd() {
       {/* content */}
       <section className="px-9 py-20">
         <div
-          className="w-full h-[480px] rounded-lg overflow-hidden flex items-center justify-center mb-12"
+          className="w-full h-[480px] rounded-lg overflow-hidden flex items-center justify-center mb-12 relative"
           style={{ background: 'linear-gradient(213deg, rgba(255,98,198,1) 0%, rgba(251,213,101,1) 100%)' }}
         >
           <video
@@ -56,7 +57,9 @@ export default function Plotd() {
             playsInline
             style={{ aspectRatio: '0.48', height: '88%', width: 'auto' }}
             className="object-cover rounded-2xl"
+            onCanPlay={() => setIsLoaded(true)}
           />
+          {!isLoaded && <div className="absolute inset-0" style={{ background: 'linear-gradient(213deg, rgba(255,98,198,1) 0%, rgba(251,213,101,1) 100%)' }} />}
         </div>
         <div className="max-w-2xl">
           <span className="text-label tracking-eyebrow uppercase text-text-muted font-light block mb-6">CASE STUDY</span>
