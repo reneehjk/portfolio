@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 export default function CustomCursor() {
-  const wrapperRef = useRef(null)
+  const dotRef = useRef(null)
   const target = useRef({ x: -100, y: -100 })
   const pos = useRef({ x: -100, y: -100 })
   const [hovering, setHovering] = useState(false)
@@ -17,17 +17,20 @@ export default function CustomCursor() {
       if (e.target.closest('a, button, [role="button"]')) setHovering(false)
     }
 
-    window.addEventListener('mousemove', onMove)
-    document.addEventListener('mouseover', onOver)
-    document.addEventListener('mouseout', onOut)
+    window.addEventListener('mousemove', onMove, { passive: true })
+    document.addEventListener('mouseover', onOver, { passive: true })
+    document.addEventListener('mouseout', onOut, { passive: true })
 
     let raf
     const tick = () => {
-      pos.current.x += (target.current.x - pos.current.x) * 0.5
-      pos.current.y += (target.current.y - pos.current.y) * 0.5
-      if (wrapperRef.current) {
-        wrapperRef.current.style.left = `${pos.current.x}px`
-        wrapperRef.current.style.top = `${pos.current.y}px`
+      const dx = target.current.x - pos.current.x
+      const dy = target.current.y - pos.current.y
+      if (Math.abs(dx) > 0.1 || Math.abs(dy) > 0.1) {
+        pos.current.x += dx * 0.5
+        pos.current.y += dy * 0.5
+        if (dotRef.current) {
+          dotRef.current.style.transform = `translate(${pos.current.x}px, ${pos.current.y}px)`
+        }
       }
       raf = requestAnimationFrame(tick)
     }
@@ -43,12 +46,12 @@ export default function CustomCursor() {
 
   return (
     <div
-      ref={wrapperRef}
-      className="hidden md:block fixed z-[100] pointer-events-none -translate-x-1/2 -translate-y-1/2"
-      style={{ left: '-100px', top: '-100px' }}
+      ref={dotRef}
+      className="hidden md:block fixed top-0 left-0 z-[100] pointer-events-none w-0 h-0"
+      style={{ willChange: 'transform', transform: 'translate(-100px, -100px)' }}
     >
       <div
-        className={`rounded-full bg-accent-default transition-[width,height,opacity] duration-150 ease-out ${
+        className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-default transition-[width,height,opacity] duration-150 ease-out ${
           hovering ? 'w-8 h-8 opacity-40' : 'w-3 h-3 opacity-100'
         }`}
       />

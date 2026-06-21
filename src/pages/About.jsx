@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import SEO from '../components/SEO'
+import { ArrowUpRightIcon } from '../components/icons'
 
 import photo from '../assets/about/photo.jpg'
 
@@ -44,15 +45,14 @@ const logos = [
 ]
 
 const galleryItems = [
-  { src: gallery1, caption: '01' },
-  { src: gallery2, caption: '02' },
-  { src: gallery3, caption: '03' },
-  { src: gallery4, caption: '04' },
-  { src: gallery5, caption: '05' },
-  { src: gallery6, caption: '06' },
-  { src: gallery7, caption: '07' },
-  { src: gallery8, caption: '08' },
-  { src: gallery9, caption: '09' },
+  { src: gallery4, caption: 'watching IDL' },
+  { src: gallery3, caption: 'presenting at qux' },
+  { src: gallery7, caption: 'qtma demo day, aws' },
+  { src: gallery1, caption: 'pokemon event' },
+  { src: gallery5, caption: 'with friends' },
+  { src: gallery6, caption: 'club fair' },
+  { src: gallery2, caption: 'dance performance' },
+  { src: gallery9, caption: 'my cat' },
 ]
 
 function LoadingImg({ src, alt, className }) {
@@ -70,12 +70,15 @@ function LoadingImg({ src, alt, className }) {
   )
 }
 
-function GalleryImage({ src, caption, className, onClick }) {
+function GalleryImage({ src, className, onClick }) {
   const [loaded, setLoaded] = useState(false)
   return (
     <div
+      role="button"
+      tabIndex={0}
       className={`relative overflow-hidden rounded-lg cursor-pointer group ${className}`}
       onClick={onClick}
+      onKeyDown={e => e.key === 'Enter' && onClick?.()}
     >
       {!loaded && (
         <div className="absolute inset-0 bg-border-default animate-pulse" />
@@ -83,50 +86,65 @@ function GalleryImage({ src, caption, className, onClick }) {
       <img
         src={src}
         alt=""
-        className={`w-full h-full object-cover transition-opacity duration-500 ${loaded ? 'opacity-100' : 'opacity-0'}`}
+        loading="lazy"
+        decoding="async"
+        className={`w-full h-full object-cover transition-[opacity,transform] duration-500 ease-out group-hover:scale-105 ${loaded ? 'opacity-100' : 'opacity-0'}`}
+        style={{ willChange: 'transform' }}
         onLoad={() => setLoaded(true)}
       />
-      {caption && (
-        <span className="absolute bottom-2 right-3 text-label text-white/60 drop-shadow">
-          {caption}
-        </span>
-      )}
     </div>
   )
 }
 
 function Lightbox({ image, onClose }) {
+  const [visible, setVisible] = useState(false)
+  const [closing, setClosing] = useState(false)
+
+  const handleClose = useCallback(() => {
+    setClosing(true)
+    setTimeout(onClose, 280)
+  }, [onClose])
+
   useEffect(() => {
-    const handleKey = (e) => { if (e.key === 'Escape') onClose() }
+    const raf = requestAnimationFrame(() => setVisible(true))
+    return () => cancelAnimationFrame(raf)
+  }, [])
+
+  useEffect(() => {
+    const handleKey = (e) => { if (e.key === 'Escape') handleClose() }
     document.addEventListener('keydown', handleKey)
     return () => document.removeEventListener('keydown', handleKey)
-  }, [onClose])
+  }, [handleClose])
+
+  const isIn = visible && !closing
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-6"
-      onClick={onClose}
+      className={`fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/80 transition-opacity duration-300 ${isIn ? 'opacity-100' : 'opacity-0'}`}
+      onClick={handleClose}
     >
       <div
-        className="relative max-w-4xl max-h-[90vh] w-full flex items-center justify-center"
+        className={`relative max-w-4xl max-h-[90vh] w-full flex items-center justify-center transition-[opacity,transform] duration-300 ease-out ${isIn ? 'opacity-100 scale-100' : 'opacity-0 scale-[0.96]'}`}
         onClick={e => e.stopPropagation()}
       >
-        <img
-          src={image.src}
-          alt=""
-          className="max-w-full max-h-[85vh] rounded-lg object-contain"
-        />
-        {image.caption && (
-          <span className="absolute bottom-3 right-4 text-label text-white/40">
-            {image.caption}
-          </span>
-        )}
-        <button
-          className="absolute top-0 right-0 -translate-y-8 text-label text-white/50 hover:text-white transition-colors"
-          onClick={onClose}
-        >
-          close
-        </button>
+        <div className="relative inline-flex">
+          <img
+            src={image.src}
+            alt=""
+            className="max-w-full max-h-[85vh] rounded-lg object-contain"
+          />
+          {image.caption && (
+            <span className="absolute bottom-3 right-3 text-label text-white/50 drop-shadow">
+              {image.caption}
+            </span>
+          )}
+          <button
+            className="absolute -top-8 right-0 text-label text-white/50 hover:text-white transition-colors"
+            onClick={handleClose}
+          >
+            close
+          </button>
+        </div>
       </div>
     </div>
   )
@@ -161,7 +179,7 @@ export default function About() {
             <div className="flex flex-col gap-4 text-body text-text-secondary leading-[1.8] opacity-0 animate-[fadeUp_0.85s_0.45s_cubic-bezier(0.16,1,0.3,1)_forwards]">
               <p>i&apos;m a designer who builds. based in vancouver, graduating from queen&apos;s university in april 2026 with a degree in computing.</p>
               <p>i started with code. design pulled me in because it was problem solving with a creative layer. now i sit at the intersection of both and that&apos;s exactly where i want to be.</p>
-              <p>i co-founded the queen&apos;s ux club to teach other students what i was figuring out: user research, figma, interaction design. then i went and did it at aisle, studiostone, and nezdek.</p>
+              <p>i co-founded the <a href="https://www.instagram.com/queens.ux/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5 text-text-primary hover:text-accent-default transition-colors duration-150">queen&apos;s ux club<ArrowUpRightIcon className="w-2.5 h-2.5" /></a> to teach other students what i was figuring out: user research, figma, interaction design. then i went and did it at <a href="https://periodaisle.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5 text-text-primary hover:text-accent-default transition-colors duration-150">aisle<ArrowUpRightIcon className="w-2.5 h-2.5" /></a>, <a href="https://studiostonecreative.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5 text-text-primary hover:text-accent-default transition-colors duration-150">studiostone<ArrowUpRightIcon className="w-2.5 h-2.5" /></a>, and <a href="https://nezdek.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5 text-text-primary hover:text-accent-default transition-colors duration-150">nezdek<ArrowUpRightIcon className="w-2.5 h-2.5" /></a>.</p>
             </div>
           </div>
         </div>
@@ -182,7 +200,7 @@ export default function About() {
               <div className="flex flex-col gap-4 text-body text-text-secondary leading-[1.8] opacity-0 animate-[fadeUp_0.85s_0.45s_cubic-bezier(0.16,1,0.3,1)_forwards]">
                 <p>i&apos;m a designer who builds. based in vancouver, graduating from queen&apos;s university in april 2026 with a degree in computing.</p>
                 <p>i started with code. design pulled me in because it was problem solving with a creative layer. now i sit at the intersection of both and that&apos;s exactly where i want to be.</p>
-                <p>i co-founded the queen&apos;s ux club to teach other students what i was figuring out: user research, figma, interaction design. then i went and did it at aisle, studiostone, and nezdek.</p>
+                <p>i co-founded the <a href="https://www.instagram.com/queens.ux/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5 text-text-primary hover:text-accent-default transition-colors duration-150">queen&apos;s ux club<ArrowUpRightIcon className="w-2.5 h-2.5" /></a> to teach other students what i was figuring out: user research, figma, interaction design. then i went and did it at <a href="https://periodaisle.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5 text-text-primary hover:text-accent-default transition-colors duration-150">aisle<ArrowUpRightIcon className="w-2.5 h-2.5" /></a>, <a href="https://studiostonecreative.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5 text-text-primary hover:text-accent-default transition-colors duration-150">studiostone<ArrowUpRightIcon className="w-2.5 h-2.5" /></a>, and <a href="https://nezdek.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5 text-text-primary hover:text-accent-default transition-colors duration-150">nezdek<ArrowUpRightIcon className="w-2.5 h-2.5" /></a>.</p>
               </div>
             </div>
           </div>
@@ -260,25 +278,19 @@ export default function About() {
                 className="flex-1"
                 onClick={() => setLightbox(galleryItems[5])}
               />
+            </div>
+            <div className="flex gap-4 h-[168px]">
               <GalleryImage
                 src={galleryItems[6].src}
                 caption={galleryItems[6].caption}
                 className="flex-1"
                 onClick={() => setLightbox(galleryItems[6])}
               />
-            </div>
-            <div className="flex gap-4 h-[168px]">
               <GalleryImage
                 src={galleryItems[7].src}
                 caption={galleryItems[7].caption}
-                className="flex-1"
+                className="w-[168px] shrink-0"
                 onClick={() => setLightbox(galleryItems[7])}
-              />
-              <GalleryImage
-                src={galleryItems[8].src}
-                caption={galleryItems[8].caption}
-                className="w-[174px] shrink-0"
-                onClick={() => setLightbox(galleryItems[8])}
               />
             </div>
           </div>
@@ -292,9 +304,8 @@ export default function About() {
           <GalleryImage src={galleryItems[2].src} caption={galleryItems[2].caption} className="col-span-2 h-[280px]" onClick={() => setLightbox(galleryItems[2])} />
           <GalleryImage src={galleryItems[4].src} caption={galleryItems[4].caption} className="h-[180px]" onClick={() => setLightbox(galleryItems[4])} />
           <GalleryImage src={galleryItems[5].src} caption={galleryItems[5].caption} className="h-[180px]" onClick={() => setLightbox(galleryItems[5])} />
-          <GalleryImage src={galleryItems[7].src} caption={galleryItems[7].caption} className="col-span-2 h-[168px]" onClick={() => setLightbox(galleryItems[7])} />
-          <GalleryImage src={galleryItems[6].src} caption={galleryItems[6].caption} className="h-[180px]" onClick={() => setLightbox(galleryItems[6])} />
-          <GalleryImage src={galleryItems[8].src} caption={galleryItems[8].caption} className="h-[180px]" onClick={() => setLightbox(galleryItems[8])} />
+          <GalleryImage src={galleryItems[6].src} caption={galleryItems[6].caption} className="aspect-square" onClick={() => setLightbox(galleryItems[6])} />
+          <GalleryImage src={galleryItems[7].src} caption={galleryItems[7].caption} className="aspect-square" onClick={() => setLightbox(galleryItems[7])} />
         </div>
       </section>
 

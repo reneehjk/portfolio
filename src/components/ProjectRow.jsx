@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { PlusIcon, ArrowUpRightIcon } from './icons'
 import placeholderVideo from '../assets/placeholder.mp4'
+import aisleHero from '../assets/aisle/hero.mp4'
 
 export default function ProjectRow({ project, isMobile, onSelect, isSelected }) {
   const [hovered, setHovered] = useState(false)
@@ -66,7 +67,7 @@ export default function ProjectRow({ project, isMobile, onSelect, isSelected }) 
           >
             <video
               ref={videoRef}
-              src={placeholderVideo}
+              src={project.id === 'aisle' ? aisleHero : placeholderVideo}
               loop
               muted
               playsInline

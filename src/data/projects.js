@@ -5,7 +5,7 @@ export const projects = [
     name: 'aisle',
     type: 'web design/development · e-commerce',
     description:
-      'rebranding and new product launch. redesigned the user flow to build trust, then built the whole thing in shopify.',
+      'rebranding and new product launch. redesigned the user flow to build trust, then built the whole thing in shopify. currently ongoing.',
     thumbBg: '#e8e2d9',
     slug: 'aisle',
     liveUrl: 'https://aisle.com',

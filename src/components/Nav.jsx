@@ -19,7 +19,7 @@ export default function Nav() {
       const h = hours24 % 12 || 12
       const m = String(now.getMinutes()).padStart(2, '0')
       const s = String(now.getSeconds()).padStart(2, '0')
-      setTime(`${h}:${m}:${s} ${ampm} pst`)
+      setTime(`${h}:${m}:${s} ${ampm}`)
     }
     tick()
     const id = setInterval(tick, 1000)
