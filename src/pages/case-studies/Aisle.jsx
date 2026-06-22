@@ -18,14 +18,14 @@ export default function Aisle() {
       <Nav />
 
       {/* hero */}
-      <section className="px-9 pt-20 pb-16 border-b border-half border-border-default">
+      <section className="px-5 md:px-10 pt-20 pb-16 border-b border-half border-border-default">
         <Link
           to="/"
           className="text-label text-text-muted font-light hover:text-accent-default transition-colors duration-200 inline-block mb-12"
         >
           ← back
         </Link>
-        <div className="flex justify-between items-start mb-8">
+        <div className="flex flex-col md:flex-row md:justify-between items-start gap-1 md:gap-0 mb-8">
           <span className="text-label tracking-eyebrow uppercase text-text-muted font-light">web design/development · e-commerce</span>
           <span className="text-label text-text-faint font-light">2026 - ONGOING</span>
         </div>
@@ -38,9 +38,9 @@ export default function Aisle() {
       </section>
 
       {/* content */}
-      <section className="px-9 py-20">
+      <section className="px-5 md:px-10 py-20">
         <div
-          className="w-full h-[480px] rounded-lg overflow-hidden mb-12 relative"
+          className="w-full h-[320px] rounded-lg overflow-hidden mb-12 relative"
           style={{ backgroundColor: '#e8e2d9' }}
         >
           <video
@@ -54,13 +54,22 @@ export default function Aisle() {
           />
           {!isLoaded && <div className="absolute inset-0 animate-pulse" style={{ backgroundColor: '#e8e2d9' }} />}
         </div>
-        <div className="max-w-2xl">
-          <span className="text-label tracking-eyebrow uppercase text-text-muted font-light block mb-6">CASE STUDY</span>
+        <div>
           <p className="text-body text-text-secondary font-light leading-relaxed mb-6">
             a rebrand and product relaunch, still in progress. new visual identity, a refreshed shopify storefront, early UI for the upcoming launch.
           </p>
-          <p className="text-body text-text-secondary font-light leading-relaxed">
+          <p className="text-body text-text-secondary font-light leading-relaxed mb-16">
             right now that means making calls before the full picture exists, and adjusting as things shift. more to come as it ships.
+          </p>
+          <p className="text-sm font-light text-text-secondary leading-relaxed">
+            this project is currently in progress.{' '}
+            <a
+              href="mailto:reneehjkim11@gmail.com"
+              style={{ color: '#5a9ab5', textDecoration: 'none' }}
+            >
+              reach out
+            </a>
+            {' '}if you'd like to hear more.
           </p>
         </div>
       </section>

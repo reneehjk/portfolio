@@ -165,7 +165,7 @@ export default function About() {
       {/* Hero — gradient bg matches landing page */}
       <section className="">
         {/* Desktop / tablet: side by side */}
-        <div className="hidden sm:flex items-start px-10 py-20">
+        <div className="hidden sm:flex items-start px-5 md:px-10 py-20">
           {/* Photo */}
           <div className="shrink-0 w-[240px] lg:w-[320px] h-[300px] lg:h-[400px] rounded-lg overflow-hidden opacity-0 animate-[fadeUp_0.85s_0.05s_cubic-bezier(0.16,1,0.3,1)_forwards]">
             <LoadingImg src={photo} alt="Renee Kim" className="object-cover object-top" />
