@@ -69,7 +69,7 @@ export default function ProjectRow({ project, isMobile, onSelect, isSelected }) 
           {project.id === 'pochi' ? (
             <div
               className="w-full aspect-[515/240] md:aspect-auto md:h-60 rounded-lg overflow-hidden relative"
-              style={{ backgroundColor: '#FAF8F6' }}
+              style={{ backgroundColor: '#EEEDFF' }}
             >
               <img
                 src={pochiHero}
@@ -77,7 +77,7 @@ export default function ProjectRow({ project, isMobile, onSelect, isSelected }) 
                 className="w-full h-full object-contain"
                 onLoad={() => setIsLoaded(true)}
               />
-              {!isLoaded && <div className="absolute inset-0 animate-pulse" style={{ backgroundColor: '#FAF8F6' }} />}
+              {!isLoaded && <div className="absolute inset-0 animate-pulse" style={{ backgroundColor: '#EEEDFF' }} />}
             </div>
           ) : project.id === 'plotd' ? (
             <div

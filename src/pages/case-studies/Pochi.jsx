@@ -4,18 +4,24 @@ import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import SEO from '../../components/SEO'
 import pochiHero from '../../assets/pochi/hero.gif'
+import apollo from '../../assets/pochi/apollo.png'
+import diagram from '../../assets/pochi/diagram.png'
+import github from '../../assets/pochi/github.png'
+import appUx from '../../assets/pochi/app_ux.png'
+import onboardingUx from '../../assets/pochi/onboarding_ux.png'
+import homeImg from '../../assets/pochi/home.png'
+import logImg from '../../assets/pochi/log.png'
+import calendarImg from '../../assets/pochi/calendar.png'
+import nestImg from '../../assets/pochi/nest.png'
+import settingsImg from '../../assets/pochi/settings.png'
 
 const sections = [
-  { id: 'summary',        label: 'SUMMARY' },
-  { id: 'the-problem',    label: 'THE PROBLEM' },
-  { id: 'the-structure',  label: 'THE STRUCTURE' },
-  { id: 'user-flows',     label: 'USER FLOWS' },
-  { id: 'admin',          label: 'ADMIN' },
-  { id: 'home-screen',    label: 'HOME SCREEN' },
-  { id: 'logging',        label: 'LOGGING' },
-  { id: 'pet-profiles',   label: 'PET PROFILES' },
-  { id: 'the-prototype',  label: 'THE PROTOTYPE' },
-  { id: 'the-build',      label: 'THE BUILD' },
+  { id: 'summary',      label: 'SUMMARY' },
+  { id: 'the-problem',  label: 'THE PROBLEM' },
+  { id: 'data-model',   label: 'DATA MODEL' },
+  { id: 'user-flows',   label: 'USER FLOWS' },
+  { id: 'screens',      label: 'SCREENS' },
+  { id: 'the-build',    label: 'THE BUILD' },
 ]
 
 export default function Pochi() {
@@ -53,7 +59,10 @@ export default function Pochi() {
   }, [])
 
   const scrollToSection = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    const el = document.getElementById(id)
+    if (!el) return
+    const top = el.getBoundingClientRect().top + window.scrollY - 96
+    window.scrollTo({ top, behavior: 'smooth' })
   }
 
   return (
@@ -88,8 +97,8 @@ export default function Pochi() {
       {/* content */}
       <section className="px-5 md:px-10 py-20">
         <div
-          className="w-full h-[320px] rounded-lg overflow-hidden mb-12 relative border border-border-default"
-          style={{ backgroundColor: '#FAF8F6' }}
+          className="w-full h-[320px] rounded-lg overflow-hidden mb-12 relative"
+          style={{ backgroundColor: '#EEEDFF' }}
         >
           <img
             src={pochiHero}
@@ -97,8 +106,9 @@ export default function Pochi() {
             className="w-full h-full object-contain"
             onLoad={() => setIsLoaded(true)}
           />
-          {!isLoaded && <div className="absolute inset-0 animate-pulse" style={{ backgroundColor: '#FAF8F6' }} />}
+          {!isLoaded && <div className="absolute inset-0 animate-pulse" style={{ backgroundColor: '#EEEDFF' }} />}
         </div>
+
         {/* case study blocks with sidebar */}
         <div className="flex gap-16 mt-0">
 
@@ -110,7 +120,7 @@ export default function Pochi() {
                 onClick={() => scrollToSection(id)}
                 className="text-left transition-colors duration-200"
                 style={{
-                  fontSize: '10px',
+                  fontSize: '12px',
                   letterSpacing: '0.08em',
                   fontWeight: 300,
                   color: activeSection === id ? '#1a1a1a' : '#b0afa9',
@@ -136,15 +146,19 @@ export default function Pochi() {
 
             <div id="the-problem">
               <span className="text-label tracking-eyebrow uppercase text-text-muted font-light block mb-4">THE PROBLEM</span>
-              <div className="w-full h-64 rounded-xl" style={{ backgroundColor: '#e0dfd9' }} />
+              <div className="w-full h-64 sm:h-72 rounded-xl overflow-hidden" style={{ backgroundColor: '#EEEDFF' }}>
+                <img src={apollo} alt="" className="w-full h-full object-cover" />
+              </div>
               <p className="text-sm font-light text-text-secondary mt-4 leading-relaxed">
                 my cat figured out that if he acted hungry, someone would always feed him so we all did, and he got fat.
               </p>
             </div>
 
-            <div id="the-structure">
-              <span className="text-label tracking-eyebrow uppercase text-text-muted font-light block mb-4">THE STRUCTURE</span>
-              <div className="w-full h-64 rounded-xl" style={{ backgroundColor: '#e0dfd9' }} />
+            <div id="data-model">
+              <span className="text-label tracking-eyebrow uppercase text-text-muted font-light block mb-4">DATA MODEL</span>
+              <div className="w-full rounded-xl p-6 sm:p-10" style={{ backgroundColor: '#EEEDFF' }}>
+                <img src={diagram} alt="" className="w-full object-contain" />
+              </div>
               <p className="text-sm font-light text-text-secondary mt-4 leading-relaxed">
                 before any screens, i mapped out the logic: one household, multiple members, multiple pets, one admin who controls it all.
               </p>
@@ -152,70 +166,107 @@ export default function Pochi() {
 
             <div id="user-flows">
               <span className="text-label tracking-eyebrow uppercase text-text-muted font-light block mb-4">USER FLOWS</span>
-              <div className="w-full h-64 rounded-xl" style={{ backgroundColor: '#e0dfd9' }} />
+              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex-1 rounded-xl p-8" style={{ backgroundColor: '#EEEDFF' }}>
+                  <img src={onboardingUx} alt="" className="w-1/2 mx-auto object-contain" />
+                </div>
+                <div className="flex-1 rounded-xl p-8" style={{ backgroundColor: '#EEEDFF' }}>
+                  <img src={appUx} alt="" className="w-full object-contain" />
+                </div>
+              </div>
               <p className="text-sm font-light text-text-secondary mt-4 leading-relaxed">
                 i started rough, working out how a family would actually move through the app day to day.
               </p>
             </div>
 
-            <div id="admin">
-              <span className="text-label tracking-eyebrow uppercase text-text-muted font-light block mb-4">ADMIN</span>
-              <div className="w-full h-64 rounded-xl" style={{ backgroundColor: '#e0dfd9' }} />
-              <p className="text-sm font-light text-text-secondary mt-4 leading-relaxed">
-                each household has one admin who manages who is in it and which pets belong to them.
-              </p>
-            </div>
+            <div id="screens">
+              <span className="text-label tracking-eyebrow uppercase text-text-muted font-light block mb-8">SCREENS</span>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-10">
 
-            <div id="home-screen">
-              <span className="text-label tracking-eyebrow uppercase text-text-muted font-light block mb-4">HOME SCREEN</span>
-              <div className="w-full h-64 rounded-xl" style={{ backgroundColor: '#e0dfd9' }} />
-              <p className="text-sm font-light text-text-secondary mt-4 leading-relaxed">
-                the home screen answers one question at a glance: has this pet been fed today, and by who.
-              </p>
-            </div>
+                <div>
+                  <span className="text-label tracking-eyebrow uppercase text-text-muted font-light block mb-3">HOME SCREEN</span>
+                  <div className="w-full aspect-square rounded-xl overflow-hidden" style={{ backgroundColor: '#EEEDFF' }}>
+                    <img src={homeImg} alt="" className="w-full h-full object-cover" />
+                  </div>
+                  <p className="text-sm font-light text-text-secondary mt-3 leading-relaxed">
+                    the home screen answers one question at a glance: has this pet been fed today, and by who.
+                  </p>
+                </div>
 
-            <div id="logging">
-              <span className="text-label tracking-eyebrow uppercase text-text-muted font-light block mb-4">LOGGING</span>
-              <div className="w-full h-64 rounded-xl" style={{ backgroundColor: '#e0dfd9' }} />
-              <p className="text-sm font-light text-text-secondary mt-4 leading-relaxed">
-                any member can log a feeding and it updates instantly for everyone in the household.
-              </p>
-            </div>
+                <div>
+                  <span className="text-label tracking-eyebrow uppercase text-text-muted font-light block mb-3">LOGGING</span>
+                  <div className="w-full aspect-square rounded-xl overflow-hidden" style={{ backgroundColor: '#EEEDFF' }}>
+                    <img src={logImg} alt="" className="w-full h-full object-cover" />
+                  </div>
+                  <p className="text-sm font-light text-text-secondary mt-3 leading-relaxed">
+                    any member can log a feeding and it updates instantly for everyone in the household.
+                  </p>
+                </div>
 
-            <div id="pet-profiles">
-              <span className="text-label tracking-eyebrow uppercase text-text-muted font-light block mb-4">PET PROFILES</span>
-              <div className="w-full h-64 rounded-xl" style={{ backgroundColor: '#e0dfd9' }} />
-              <p className="text-sm font-light text-text-secondary mt-4 leading-relaxed">
-                each pet gets their own profile, with colors and details set by the admin.
-              </p>
-            </div>
+                <div>
+                  <span className="text-label tracking-eyebrow uppercase text-text-muted font-light block mb-3">CALENDAR</span>
+                  <div className="w-full aspect-square rounded-xl overflow-hidden" style={{ backgroundColor: '#EEEDFF' }}>
+                    <img src={calendarImg} alt="" className="w-full h-full object-cover" />
+                  </div>
+                  <p className="text-sm font-light text-text-secondary mt-3 leading-relaxed">
+                    a month view that shows feeding history at a glance, tap any day to see the full breakdown.
+                  </p>
+                </div>
 
-            <div id="the-prototype">
-              <span className="text-label tracking-eyebrow uppercase text-text-muted font-light block mb-4">THE PROTOTYPE</span>
-              <iframe
-                src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/design/oyJyRThJHxH1KnZekFVGh3/Pochi-Case-Study?node-id=0-1&t=Y2eIBmXdq3ZyWLqp-1"
-                className="w-full rounded-xl"
-                style={{ height: '600px', border: 'none' }}
-                allowFullScreen
-              />
-              <p className="text-sm font-light text-text-secondary mt-4 leading-relaxed">
-                the full prototype, embedded from figma.
-              </p>
+                <div>
+                  <span className="text-label tracking-eyebrow uppercase text-text-muted font-light block mb-3">NEST</span>
+                  <div className="w-full aspect-square rounded-xl overflow-hidden" style={{ backgroundColor: '#EEEDFF' }}>
+                    <img src={nestImg} alt="" className="w-full h-full object-cover" />
+                  </div>
+                  <p className="text-sm font-light text-text-secondary mt-3 leading-relaxed">
+                    one screen for everything household: who's in it, what pets belong, and who fed what this month.
+                  </p>
+                </div>
+
+                <div>
+                  <span className="text-label tracking-eyebrow uppercase text-text-muted font-light block mb-3">SETTINGS</span>
+                  <div className="w-full aspect-square rounded-xl overflow-hidden" style={{ backgroundColor: '#EEEDFF' }}>
+                    <img src={settingsImg} alt="" className="w-full h-full object-cover" />
+                  </div>
+                  <p className="text-sm font-light text-text-secondary mt-3 leading-relaxed">
+                    one place to manage your account, control which notifications you get, and leave or manage your nest.
+                  </p>
+                </div>
+
+              </div>
             </div>
 
             <div id="the-build">
               <span className="text-label tracking-eyebrow uppercase text-text-muted font-light block mb-4">THE BUILD</span>
-              <div className="w-full h-64 rounded-xl mb-4" style={{ backgroundColor: '#e0dfd9' }} />
+              <iframe
+                src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/design/oyJyRThJHxH1KnZekFVGh3/Pochi-Case-Study?node-id=0-1&t=Y2eIBmXdq3ZyWLqp-1"
+                className="w-full rounded-xl mb-6"
+                style={{ height: '600px', border: 'none' }}
+                allowFullScreen
+              />
+              <div className="w-full h-64 rounded-xl mb-4 p-3" style={{ backgroundColor: '#ffffff' }}>
+                <img src={github} alt="" className="w-full h-full object-contain" />
+              </div>
               <p className="text-body font-light text-text-primary leading-relaxed">
                 built in react native with cursor.{' '}
                 <a
-                  href="https://github.com/reneekim/pochi"
+                  href="https://github.com/reneehjk/pochi-server"
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{ color: '#5a9ab5' }}
                   className="hover:underline"
                 >
-                  view source code
+                  view server repo
+                </a>
+                {' · '}
+                <a
+                  href="https://github.com/reneehjk/pochi-backend"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: '#5a9ab5' }}
+                  className="hover:underline"
+                >
+                  view backend repo
                 </a>
               </p>
             </div>

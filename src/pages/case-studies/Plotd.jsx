@@ -57,7 +57,10 @@ export default function Plotd() {
   }, [])
 
   const scrollToSection = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    const el = document.getElementById(id)
+    if (!el) return
+    const top = el.getBoundingClientRect().top + window.scrollY - 96
+    window.scrollTo({ top, behavior: 'smooth' })
   }
 
   return (
@@ -120,7 +123,7 @@ export default function Plotd() {
                 onClick={() => scrollToSection(id)}
                 className="text-left transition-colors duration-200"
                 style={{
-                  fontSize: '10px',
+                  fontSize: '12px',
                   letterSpacing: '0.08em',
                   fontWeight: 300,
                   color: activeSection === id ? '#1a1a1a' : '#b0afa9',
