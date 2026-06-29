@@ -157,7 +157,7 @@ export default function About() {
     <div className="min-h-screen bg-[linear-gradient(225deg,#e8f1f8_0%,#fafaf8_100%)]">
       <SEO
         title="About — Renee Kim"
-        description="Renee Kim is a designer and developer based in Canada, graduating from Queen's University with a degree in computing."
+        description="Renee Kim is a design engineer based in Canada, graduating from Queen's University with a degree in computing."
         path="/about"
       />
       <Nav />
@@ -177,7 +177,7 @@ export default function About() {
               <h1 className="text-heading text-text-primary lowercase font-normal animate-[slideUp_1.2s_0.25s_cubic-bezier(0.16,1,0.3,1)_forwards] translate-y-full">hi, i&apos;m renee.</h1>
             </div>
             <div className="flex flex-col gap-4 text-body text-text-secondary leading-[1.8] opacity-0 animate-[fadeUp_0.85s_0.45s_cubic-bezier(0.16,1,0.3,1)_forwards]">
-              <p>i&apos;m a designer who builds. based in vancouver, graduating from queen&apos;s university in april 2026 with a degree in computing.</p>
+              <p>i&apos;m a design engineer. based in vancouver, graduating from queen&apos;s university in april 2026 with a degree in computing.</p>
               <p>i started with code. design pulled me in because it was problem solving with a creative layer. now i sit at the intersection of both and that&apos;s exactly where i want to be.</p>
               <p>i co-founded the <a href="https://www.instagram.com/queens.ux/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5 text-text-primary hover:text-accent-default transition-colors duration-150">queen&apos;s ux club<ArrowUpRightIcon className="w-2.5 h-2.5" /></a> to teach other students what i was figuring out: user research, figma, interaction design. then i went and did it at <a href="https://periodaisle.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5 text-text-primary hover:text-accent-default transition-colors duration-150">aisle<ArrowUpRightIcon className="w-2.5 h-2.5" /></a>, <a href="https://studiostonecreative.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5 text-text-primary hover:text-accent-default transition-colors duration-150">studiostone<ArrowUpRightIcon className="w-2.5 h-2.5" /></a>, and <a href="https://nezdek.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5 text-text-primary hover:text-accent-default transition-colors duration-150">nezdek<ArrowUpRightIcon className="w-2.5 h-2.5" /></a>.</p>
             </div>
@@ -198,7 +198,7 @@ export default function About() {
                 <h1 className="text-heading text-text-primary lowercase font-normal animate-[slideUp_1.2s_0.25s_cubic-bezier(0.16,1,0.3,1)_forwards] translate-y-full">hi, i&apos;m renee.</h1>
               </div>
               <div className="flex flex-col gap-4 text-body text-text-secondary leading-[1.8] opacity-0 animate-[fadeUp_0.85s_0.45s_cubic-bezier(0.16,1,0.3,1)_forwards]">
-                <p>i&apos;m a designer who builds. based in vancouver, graduating from queen&apos;s university in april 2026 with a degree in computing.</p>
+                <p>i&apos;m a design engineer. based in vancouver, graduating from queen&apos;s university in april 2026 with a degree in computing.</p>
                 <p>i started with code. design pulled me in because it was problem solving with a creative layer. now i sit at the intersection of both and that&apos;s exactly where i want to be.</p>
                 <p>i co-founded the <a href="https://www.instagram.com/queens.ux/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5 text-text-primary hover:text-accent-default transition-colors duration-150">queen&apos;s ux club<ArrowUpRightIcon className="w-2.5 h-2.5" /></a> to teach other students what i was figuring out: user research, figma, interaction design. then i went and did it at <a href="https://periodaisle.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5 text-text-primary hover:text-accent-default transition-colors duration-150">aisle<ArrowUpRightIcon className="w-2.5 h-2.5" /></a>, <a href="https://studiostonecreative.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5 text-text-primary hover:text-accent-default transition-colors duration-150">studiostone<ArrowUpRightIcon className="w-2.5 h-2.5" /></a>, and <a href="https://nezdek.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5 text-text-primary hover:text-accent-default transition-colors duration-150">nezdek<ArrowUpRightIcon className="w-2.5 h-2.5" /></a>.</p>
               </div>

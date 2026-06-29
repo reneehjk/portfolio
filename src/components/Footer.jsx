@@ -27,7 +27,7 @@ export default function Footer() {
           <ArrowUpRightIcon className="w-2.5 h-2.5" />
         </a>
         <a
-          href="#"
+          href="https://drive.google.com/file/d/1b-H2Ec2jqkF0J7robh7gPJcZ6z7MGnNy/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1 text-nav text-text-secondary hover:text-accent-default transition-colors duration-200"

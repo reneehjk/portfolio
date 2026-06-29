@@ -21,8 +21,8 @@ export default function Landing() {
   return (
     <div className="min-h-screen bg-bg-primary">
       <SEO
-        title="Renee Kim — Designer & Developer"
-        description="Renee Kim is a designer and developer based in Canada who designs with intention and builds with precision. Selected work in UX/UI, branding, and product design."
+        title="Renee Kim — Design Engineer"
+        description="Renee Kim is a design engineer based in Canada who designs with intention and builds with precision. Selected work in UX/UI, branding, and product design."
         path="/"
       />
       <Nav />

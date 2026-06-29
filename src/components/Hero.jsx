@@ -4,7 +4,7 @@ export default function Hero() {
       {/* eyebrow */}
       <div className="flex justify-between items-start mb-[120px] md:mb-[160px] opacity-0 translate-y-2 animate-[fadeUp_0.85s_cubic-bezier(0.16,1,0.3,1)_forwards]">
         <span className="text-label text-text-muted font-normal tracking-eyebrow uppercase">
-          designer · developer · canada
+          design engineer · canada
         </span>
         <span className="text-label text-text-muted font-normal">2026</span>
       </div>
