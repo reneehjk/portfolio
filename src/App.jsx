@@ -5,6 +5,7 @@ import CaseStudy from './pages/CaseStudy'
 import Aisle from './pages/case-studies/Aisle'
 import Pochi from './pages/case-studies/Pochi'
 import Plotd from './pages/case-studies/Plotd'
+import PlotdPlaceholder from './pages/case-studies/PlotdPlaceholder'
 import ScrollToTop from './components/ScrollToTop'
 import CustomCursor from './components/CustomCursor'
 import { Analytics } from '@vercel/analytics/react'
@@ -19,7 +20,8 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/case-study/aisle" element={<Aisle />} />
         <Route path="/case-study/pochi" element={<Pochi />} />
-        <Route path="/case-study/plotd" element={<Plotd />} />
+        <Route path="/case-study/plotd" element={<PlotdPlaceholder />} />
+        <Route path="/case-study/plotd-in-progress" element={<Plotd />} />
         <Route path="/case-study/:slug" element={<CaseStudy />} />
       </Routes>
       <Analytics />

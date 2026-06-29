@@ -68,7 +68,7 @@ export default function Plotd() {
       <SEO
         title="plotd — Renee Kim"
         description="collaborative project, owned the full design direction. led branding and all mobile screen design for a new app built from scratch."
-        path="/case-study/plotd"
+        path="/case-study/plotd-in-progress"
       />
       <Nav />
 
