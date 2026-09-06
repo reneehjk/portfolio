@@ -1,3 +1,5 @@
+import { ArrowUpRightIcon } from './icons'
+
 export default function Hero() {
   return (
     <section className="px-5 md:px-10 pt-16 pb-16 border-b border-half border-border-default">
@@ -27,8 +29,17 @@ export default function Hero() {
         </div>
 
         <div className="flex items-end justify-between gap-8">
-          <p className="text-body text-text-secondary max-w-xs sm:max-w-sm opacity-0 translate-y-2 animate-[fadeUp_0.85s_0.8s_cubic-bezier(0.16,1,0.3,1)_forwards]">
-            design with intention to build with precision.
+          <p className="text-body text-text-secondary max-w-[16rem] sm:max-w-none sm:whitespace-nowrap opacity-0 translate-y-2 animate-[fadeUp_0.85s_0.8s_cubic-bezier(0.16,1,0.3,1)_forwards]">
+            design with intention to build with precision. currently at{' '}
+            <a
+              href="https://www.insight.com/en_US/home.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-0.5 text-text-primary hover:text-accent-default transition-colors duration-150"
+            >
+              insight
+              <ArrowUpRightIcon className="w-2.5 h-2.5" />
+            </a>
           </p>
           <a
             href="#work"

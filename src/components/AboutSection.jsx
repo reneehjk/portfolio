@@ -27,12 +27,12 @@ export default function AboutSection() {
         <p className="text-body text-text-secondary lowercase leading-relaxed">
           bcmp(hons) graduate at queen's university. co-founded the queen's ux club. currently designing & building at{' '}
           <a
-            href="https://periodaisle.com/"
+            href="https://www.insight.com/en_US/home.html"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-text-primary hover:text-accent-default transition-colors duration-200"
           >
-            aisle
+            insight
             <ArrowUpRightIcon className="w-2.5 h-2.5" />
           </a>
           .
